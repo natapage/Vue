@@ -2,7 +2,23 @@
   <form @submit.prevent>
     <h4>Создание поста</h4>
     <my-input v-model="post.title" type="text" placeholder="название" />
-    <my-input v-model="post.body" type="text" placeholder="описание" />
+    <my-input
+      v-bind:modelValue="post.body"
+      @update:modelValue="
+        (value) => {
+          post.body = value;
+        }
+      "
+      type="text"
+      placeholder="описание"
+    ></my-input>
+    <!--
+      <my-input
+      v-model="post.body"
+      type="text"
+      placeholder="описание"
+    />
+    -->
     <my-button
       class="btn"
       style="align-self: flex-end; margin-top: 15px"
