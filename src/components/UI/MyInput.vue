@@ -20,11 +20,11 @@ export default {
       this.$emit('update:modelValue', event.target.value);
     },
   },
-  mounted() {
-    if (this.focused) {
-      this.$refs.input.focus();
-    }
-  },
+  // mounted() {
+  //   if (this.focused) {
+  //     this.$refs.input.focus(); // $refs объект, который содержит ссылки на элементы, input - имя элемента, focus - метод
+  //   }
+  // },
 };
 </script>
 
