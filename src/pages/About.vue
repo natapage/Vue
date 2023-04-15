@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Всякое на vue</h1>
+    <h1>О приложении</h1>
   </div>
 </template>
 

@@ -20,7 +20,7 @@
     <div v-else>Идет загрузка...</div>
     <div v-intersection="loadMorePosts" class="observer"></div>
 
-    <div class="page__wrapper">
+    <!-- <div class="page__wrapper">
       <div
         v-for="pageNumber in totalPages"
         :key="pageNumber"
@@ -32,7 +32,7 @@
       >
         {{ pageNumber }}
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
