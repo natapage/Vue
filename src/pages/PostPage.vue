@@ -41,6 +41,7 @@ import PostForm from '../components/PostForm.vue';
 import PostList from '../components/PostList.vue';
 import MyButton from '../components/UI/MyButton.vue';
 import MySelect from '../components/UI/MySelect.vue';
+import { debounce } from 'lodash';
 import axios from 'axios';
 
 export default {
@@ -87,7 +88,7 @@ export default {
       this.dialogVisible = true;
     },
 
-    async fetchPosts() {
+    handleFetchPosts: debounce(async function fetchPosts() {
       try {
         this.isPostLoading = true;
         const response = await axios.get(
@@ -106,9 +107,10 @@ export default {
       } catch (e) {
         alert('ошибка');
       } finally {
+        console.log('функция вызвана');
         this.isPostLoading = false;
       }
-    },
+    }, 300),
 
     async loadMorePosts() {
       try {
@@ -137,7 +139,10 @@ export default {
   //   },
 
   mounted() {
-    this.fetchPosts();
+    // проверяю работает ли дебаунс. работает.
+    this.handleFetchPosts();
+    this.handleFetchPosts();
+    this.handleFetchPosts();
   },
 
   computed: {
@@ -148,7 +153,6 @@ export default {
       );
     },
     sortedAndSearchedPosts() {
-      console.log(this.sortedPosts);
       return this.sortedPosts.filter(post =>
         post.title.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
