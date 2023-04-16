@@ -41,7 +41,6 @@ import PostForm from '../components/PostForm.vue';
 import PostList from '../components/PostList.vue';
 import MyButton from '../components/UI/MyButton.vue';
 import MySelect from '../components/UI/MySelect.vue';
-import { debounce } from 'lodash';
 import axios from 'axios';
 
 export default {
@@ -88,7 +87,7 @@ export default {
       this.dialogVisible = true;
     },
 
-    handleFetchPosts: debounce(async function fetchPosts() {
+    async fetchPosts() {
       try {
         this.isPostLoading = true;
         const response = await axios.get(
@@ -107,10 +106,9 @@ export default {
       } catch (e) {
         alert('ошибка');
       } finally {
-        console.log('функция вызвана');
         this.isPostLoading = false;
       }
-    }, 300),
+    },
 
     async loadMorePosts() {
       try {
@@ -140,14 +138,12 @@ export default {
 
   mounted() {
     // проверяю работает ли дебаунс. работает.
-    this.handleFetchPosts();
-    this.handleFetchPosts();
-    this.handleFetchPosts();
+    this.fetchPosts();
   },
 
   computed: {
     sortedPosts() {
-      // возвращает отсортированный массив не меняя исходный
+      // возвращает отсортhированный массив не меняя исходный
       return [...this.posts].sort((post1, post2) =>
         post1[this.selectedSort]?.localeCompare(post2[this.selectedSort])
       );

@@ -11,7 +11,6 @@
     </my-dialog>
     <post-list :posts="sortedAndSearchedPosts" v-if="!isPostsLoading" />
     <div v-else>Идет загрузка...</div>
-    <div v-intersection="loadMorePosts" class="observer"></div>
   </div>
 </template>
 
