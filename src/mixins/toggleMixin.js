@@ -7,9 +7,6 @@ export default {
   },
   methods: {
     hideDialog(event) {
-      if (event.target !== this) {
-        return;
-      }
       this.$emit('update:show', false);
     },
   },
